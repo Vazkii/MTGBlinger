@@ -1,6 +1,6 @@
 <?php	
-	define('QUERY_FLAGS', 'game:paper unique:prints -t:basic -is:funny -is:token sort:usd');
-	define('TAGGED_SETS', array(
+	$QUERY_FLAGS = 'game:paper unique:prints -t:basic -is:funny -is:token sort:usd';
+	$TAGGED_SETS = array(
 		'mps' => 'inventions',
 		'mp2' => 'invocations',
 		'exp' => 'expeditions',
@@ -18,29 +18,31 @@
 		'slc' => 'secret-lair',
 		'slp' => 'secret-lair',
 		'slu' => 'secret-lair'
-	));
-	define('TRACKED_PROMO_TYPES', array(
+	);
+	$TRACKED_PROMO_TYPES = array(
 		'bundle', 'buyabox', 'convention', 'instore', 'jpwalker', 
 		'judgegift', 'mediainsert', 'prerelease', 'promopack', 'release', 
 		'setpromo', 'textless', 'wizardsplaynetwork', 'ampersand', 'fnm', 
 		'gameday', 'boxtopper'
-	));
-	define('IGNORED_PROMO_TYPES', array(
+	);
+	$IGNORED_PROMO_TYPES = array(
 		'brawldeck'
-	));
+	);
 
 	function debug($str) {
-		if(TESTING)
+		global $testing;
+		if($testing)
 			echo($str);
 	}
 
-	function search_card($cardname, $testing=false) {
-		define('TESTING', $testing);
+	function search_card($cardname, $set_testing=false) {
+		global $testing;
+		$testing = $set_testing;
 		$query_return = array();
 
 		$cardname = str_replace('\'', '', $cardname);
-		$query = "!'$cardname' " . QUERY_FLAGS;
-		$sf_url = "https://api.scryfall.com/cards/search?q=$query&pretty=" . TESTING;
+		$query = "!'$cardname' " . $QUERY_FLAGS;
+		$sf_url = "https://api.scryfall.com/cards/search?q=$query&pretty=" . $testing;
 
 		debug("Searching for <b>$cardname</b><br>");
 		debug("<b>$sf_url</b><br>");
@@ -116,8 +118,8 @@
 		$lang = $card->lang;
 		$cn = $card->collector_number;
 
-		if(array_key_exists($set, TAGGED_SETS))
-			array_push($tags, TAGGED_SETS[$set]);
+		if(array_key_exists($set, $TAGGED_SETS))
+			array_push($tags, $TAGGED_SETS[$set]);
 
 		if($set === 'brr' && $cn > 63)
 			array_push($tags, 'sketch-artifact');
@@ -151,10 +153,10 @@
 			$found_acceptable = false;
 
 			foreach($types as $key => $type) {
-				if(in_array($type, TRACKED_PROMO_TYPES))
+				if(in_array($type, $TRACKED_PROMO_TYPES))
 					array_push($tags, $type);
 
-				else if(!in_array($type, IGNORED_PROMO_TYPES))
+				else if(!in_array($type, $IGNORED_PROMO_TYPES))
 					$found_acceptable = true;
 			}
 

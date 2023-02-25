@@ -19,7 +19,7 @@
 			<input name="Card Name" id="card-name" placeholder="Card Name">
 			<button id="send-btn">Find</button>
 			<button id="clear-btn">Clear</button><br>
-			(note: currently only supports EXACT card names)
+			(note: currently only supports <i>exact</i> card names)
 		</div>
 	</div>
 
