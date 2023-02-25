@@ -16,9 +16,9 @@
 		<div id='header'>MTG Blinger</div>
 
 		<div id='controls'>
-			<input name="Card Name" id="card-name" placeholder="Card Name">
-			<button id="send-btn">Find</button>
-			<button id="clear-btn">Clear</button><br>
+			<textarea name="Card Name" id="card-name" placeholder="Paste your decklist here" rows='20' cols=100></textarea>
+			<button id="send-btn">Find Bling</button>
+			<button id="clear-btn">Clear Results</button><br>
 			(note: currently only supports <i>exact</i> card names)
 		</div>
 	</div>

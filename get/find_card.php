@@ -66,7 +66,8 @@
 			$tags = get_card_tags($obj);
 			if(sizeof($tags)) {
 				$tags_str = implode(",", $tags);
-				$small_img = $obj->image_uris->small;
+				$image_uris = get_image_uris($obj);
+				$small_img = $image_uris->small;
 				debug("<img src='$small_img'></img><b>Tags: </b>$tags_str<br>");
 
 				$finishes_obj = array();
@@ -82,7 +83,7 @@
 
 				$filtered_obj = array(
 					'url' => $obj->scryfall_uri,
-					'image' => $obj->image_uris->normal,
+					'image' => $image_uris->normal,
 					'versions' => $finishes_obj,
 					'tags' => $tags
 				);
@@ -91,6 +92,14 @@
 		}
 
 		return array('cards' => $query_return);
+	}
+
+	function get_image_uris($card) {
+		$layout = $card->layout;
+		if($layout === 'transform' || $layout === 'modal_dfc' || $layout === 'meld' || $layout === 'reversible_card')
+			return $card->card_faces[0]->image_uris;
+		else 
+			return $card->image_uris;
 	}
 
 	function parse_price($obj, $curr, $store, $finish, &$out) {

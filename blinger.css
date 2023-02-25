@@ -36,16 +36,19 @@ button {
 	margin-bottom: 30px;
 }
 
-#top-part input {
-	width: 500px;
-	padding: 10px;
+#top-part textarea {
 	font-size: 20px;
 	margin-bottom: 5px;
+	background-color: #ffffff10;
+	border: none;
+	border-radius: 20px;
+	color: white;
+	padding: 20px;
 }
 
 #top-part button {
 	padding: 10px;
-	width: 100px;
+	width: 400px;
 	font-size: 20px;
 }
 

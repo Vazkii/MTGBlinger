@@ -30,7 +30,8 @@
 			return;
 		}
 
-		if(!sizeof(json_decode($result)->cards)) {
+		$allow_empty = array_key_exists('allow_empty', $_GET) && $_GET['allow_empty'] === 'true';
+		if(!$allow_empty && !sizeof(json_decode($result)->cards)) {
 			error(406, "$card exists on Scryfall, but no versions count as bling");
 			return;
 		}
