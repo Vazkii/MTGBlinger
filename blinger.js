@@ -16,7 +16,7 @@ $('#send-btn').click(function() {
 
 	var results = $('#results');
 	lastContainer = $('<div class="card-row-container"><div class="loading">Loading...</div></div>');
-	results.append(lastContainer);
+	results.prepend(lastContainer);
 
 	$.get(url, function(data) {
 		lastResults = JSON.parse(data);

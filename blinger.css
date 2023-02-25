@@ -135,7 +135,7 @@ button {
 	border-radius: 10px;
 }
 
-.finish-foil {
+.finish-foil, .finish-etched {
 	background: linear-gradient(90deg, 
 								rgba(255,0,0,0.5) 0%, 
 								rgba(255,154,0,0.5) 10%, 
