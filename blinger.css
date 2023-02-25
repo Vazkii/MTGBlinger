@@ -1,0 +1,184 @@
+html {
+	background-color: #222;
+}
+
+body {
+	background-color: #ffffff05;
+	color: #e2e2e2;
+	
+	margin: auto;
+	min-height: 100vh;
+	max-width: 1200px;
+	font-family: 'Roboto', sans-serif;
+}
+
+a {
+	color: lightblue;
+}
+
+a:not(:hover) {
+	text-decoration: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+#top-part {
+	border-bottom: 1px solid white;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+#header {
+	padding-top: 20px;
+	font-size: 70px;
+	margin-bottom: 30px;
+}
+
+#top-part input {
+	width: 500px;
+	padding: 10px;
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+#top-part button {
+	padding: 10px;
+	width: 100px;
+	font-size: 20px;
+}
+
+#results {
+	min-height: calc(100vh - 320px);
+}
+
+.card-row {
+	padding-top: 20px;
+	white-space: nowrap;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	background-color: #ffffff09;
+}
+
+.card-row::-webkit-scrollbar {
+	height: 10px;
+	background: #ffffff05;
+}
+
+.card-row::-webkit-scrollbar-thumb {
+	border-radius: 20px;
+	background: #ffffff33;
+}
+
+.card {
+	display: inline-block;
+	margin: 10px;
+	margin-left: 20px;
+}
+
+.card-art {
+	vertical-align: top;
+	display: inline-block;
+}
+
+.card-art img {
+	height: 500px;
+	border-radius: 18px;
+}
+
+.card-overlay {
+	display: inline-block;
+	opacity: 0;
+	transition: 0.2s opacity;
+	vertical-align: top;
+	width: 319px;
+	height: 440px;
+	margin-left: -363px;
+	border-radius: 18px;
+	background-color: #000000aa;
+	padding: 20px;
+	padding-top: 40px;
+	font-size: 20px;
+}
+
+.card-overlay:hover {
+	opacity: 1;
+	transition: 0.2s opacity;
+}
+
+.overlay-website-icon {
+	width: 20px;
+	height: 20px;
+}
+
+.overlay-card-version {
+	margin-top: 20px;
+	padding-left: 6px;
+	border-left: 3px solid #ffffff66;
+}
+
+.overlay-website-store {
+	text-transform: uppercase;
+}
+
+.card-version-title {
+	text-transform: uppercase;
+	font-size: 34px;
+}
+
+.overlay-website-holder {
+	display: inline-block;
+	vertical-align: top;
+	background-color: #00000055;
+	padding: 8px;
+	border-radius: 10px;
+}
+
+.finish-foil {
+	background: linear-gradient(90deg, 
+								rgba(255,0,0,0.5) 0%, 
+								rgba(255,154,0,0.5) 10%, 
+								rgba(208,222,33,0.5) 20%, 
+								rgba(79,220,74,0.5) 30%, 
+								rgba(63,218,216,0.5) 40%, 
+								rgba(47,201,226,0.5) 50%, 
+								rgba(28,127,238,0.5) 60%, 
+								rgba(95,21,242,0.5) 70%, 
+								rgba(186,12,248,0.5) 80%, 
+								rgba(251,7,217,0.5) 90%, 
+								rgba(255,0,0,0.5) 100%);
+	border-radius: 18px;
+}
+
+.card-row-container {
+	margin-top: 40px;
+}
+
+.card-name {
+	display: inline-block;
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: bold;
+	background-color: #ffffff09;
+	margin-left: 20px;
+	padding: 20px 30px 10px 30px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+.error {
+	background-color: #ff000009;
+	padding: 20px;
+}
+
+.loading {
+	background-color: #00ffff09;
+	padding: 20px;
+}
+
+#footer {
+	margin-top: 20px;
+	padding: 20px;
+	border-top: 1px solid #ffffff55;
+}

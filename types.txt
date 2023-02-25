@@ -1,0 +1,42 @@
+TOTAL TAGS
+Preamble: game:paper unique:prints -t:basic -is:funny -is:token
+
+Extended Art (frame_effects:extendedart)
+Borderless (border_color:borderless)
+Showcase (frame_effects:showcase)
+Foil Old Frame (frame:old is:foil)
+Box Toppers (is:boxtopper)
+Kaladesh Inventions (set:mps)
+Amonkhet Invocations (set:mp2)
+Expeditions (set:exp or set:zne)
+Mythic Edition (set:med)
+Phyrexian Cards (l:ph)
+Sketch Artifacts (set:brr cn>63)
+Mystical Archive (set:sta)
+
+Promos (is:promo)
+	Bundle: is:bundle
+	Buy a Box: is:buyabox
+	Convention: is:convention
+	In-Store Play: is:instore
+	WAR JP Planeswalkers: is:jpwalker
+	Judge Gifts: is:judgegift
+	Media Inserts: is:mediainsert
+	Prerelease Stamped: is:prerelease
+	WPN Promo Pack: is:promopack
+	Release Event: is:release
+	Set Promo: (is:setpromo -is:prerelease)
+	Textless: is:textless
+	WPN: is:wizardsplaynetwork
+	D&D Ampersand: is:ampersand
+	FNM: is:fnm
+	Game Day: is:gameday
+	Love Your LGS: (set:plg20 or set:plg21 or set:plg22 or set:plg23) 
+	Pro Tour: set:ppro
+	30th Anniversay Play: set:p30a
+	Champs and States: set:pcmp
+
+Negative Filters
+	Secret Lair  (set:sld or set:slc or set:slp or set:slu)
+	Universes Beyond (is:universesbeyond or is:godzillaseries or is:draculaseries)
+	Non-English Only cards

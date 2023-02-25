@@ -1,0 +1,37 @@
+<div class='card-name'>
+	{{card_name}}
+</div>
+<div class='card-row'>
+{{#cards}}
+	<div class='{{#versions}}finish-{{type}} {{/versions}}{{#tags}}tag-{{.}} {{/tags}}card'>
+		<div class='card-art'>
+			<img src='{{image}}'></img>
+		</div>
+		<div class='card-overlay'>
+			<div class='overlay-card-version'>
+				<div class='card-version-header'>
+					<i class="material-icons">info</i> <span class='card-version-title'>info</span><br>
+				</div>
+				<a href='{{url}}'><div class='overlay-website-holder'>
+					<img class='overlay-website-icon' src='img/scryfall.svg'></img>
+					Scryfall
+				</div></a>
+			</div>
+
+			{{#versions}}
+				<div class='overlay-card-version'>
+					<div class='card-version-header'>
+						<i class="material-icons">{{#material_icon}}{{type}}{{/material_icon}}</i> <span class='card-version-title'>{{type}}</span>
+					</div>
+					{{#buy}}
+						<a href='{{url}}'><div class='overlay-website-holder overlay-website-store'>
+							<img class='overlay-website-icon' src='img/{{store}}.ico'> 
+							{{price}} {{currency}}
+						</div></a>
+					{{/buy}}
+				</div>
+			{{/versions}}
+		</div>
+	</div>
+{{/cards}}
+</div>
