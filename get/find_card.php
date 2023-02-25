@@ -36,7 +36,7 @@
 	}
 
 	function search_card($cardname, $set_testing=false) {
-		global $testing;
+		global $testing, $QUERY_FLAGS;
 		$testing = $set_testing;
 		$query_return = array();
 
@@ -112,6 +112,7 @@
 	}
 
 	function get_card_tags($card) {
+		global $TAGGED_SETS, $TRACKED_PROMO_TYPES, $IGNORED_PROMO_TYPES;
 		$tags = array();
 
 		$set = $card->set;
