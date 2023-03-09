@@ -13,7 +13,8 @@
 </head>
 <body>
 	<div id="top-part">
-		<div id='header'>MTG Blinger</div>
+		<div id='header'>MTG <span class='r1'>B</span><span class='r2'>l</span><span class='r3'>i</span><span class='r4'>n</span><span class='r5'>g</span><span class='r6'>e</span><span class='r7'>r</span>
+		</div>
 
 		<div id='controls'>
 			<div id='input'>

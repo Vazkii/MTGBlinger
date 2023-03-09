@@ -20,6 +20,14 @@ a:not(:hover) {
 	text-decoration: none;
 }
 
+.r1 { text-shadow: 3px 3px 5px red }
+.r2 { text-shadow: 3px 3px 5px orange }
+.r3 { text-shadow: 3px 3px 5px yellow }
+.r4 { text-shadow: 3px 3px 5px lime }
+.r5 { text-shadow: 3px 3px 5px blue }
+.r6 { text-shadow: 3px 3px 5px purple }
+.r7 { text-shadow: 3px 3px 5px violet }
+
 button {
 	cursor: pointer;
 	border-radius: 20px;
