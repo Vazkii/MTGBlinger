@@ -22,6 +22,12 @@ a:not(:hover) {
 
 button {
 	cursor: pointer;
+	border-radius: 20px;
+	background-color: #ffffff20;
+	margin-left: 20px;
+	margin-right: 20px;
+	color: white;
+	border: none;
 }
 
 #top-part {
@@ -50,6 +56,33 @@ button {
 	padding: 10px;
 	width: 400px;
 	font-size: 20px;
+}
+
+#filters {
+	margin-top: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+	background-color: #ffffff10;
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
+
+#filters-header {
+	height: 47px;
+	border-radius: 20px;
+	background-color: #ffffff10;
+	cursor: pointer;
+	font-size: 20px;
+	line-height: 47px;
+}
+
+.filter-container {
+	display: inline-block;
+	vertical-align: top;
+	margin: 20px;
+	width: 300px;
+	text-align: left;
 }
 
 #results {

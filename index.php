@@ -16,11 +16,26 @@
 		<div id='header'>MTG Blinger</div>
 
 		<div id='controls'>
-			<textarea name="Card Name" id="card-name" placeholder="Paste your decklist here" rows='20' cols=100></textarea>
-			<button id="send-btn">Find Bling</button>
-			<button id="clear-btn">Clear Results</button><br>
-			(note: currently only supports <i>exact</i> card names)
+			<div id='input'>
+				<textarea name="Card Name" id="card-name" placeholder="Paste your decklist here" rows='20' cols=100></textarea>
+				<button id="send-btn">Find Bling</button>
+				<button id="clear-btn">Clear Results</button><br>
+			</div>
+			
+			<div id='filters'>
+				<div id='filters-header'>
+					Show Filters
+				</div>
+				<div id='filters-contents'>
+					<?php 
+						include 'get/filters.php'; 
+						render_filters();
+					?>
+				</div>
+			</div>
+
 		</div>
+
 	</div>
 
 	<div id="results"></div>
