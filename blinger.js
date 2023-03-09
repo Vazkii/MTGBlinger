@@ -16,7 +16,7 @@ $('#send-btn').click(function() {
 	if(errored)
 		lastContainer.remove();
 
-	var decklist = $('#card-name').val();
+	var decklist = $('#card-name').val().trim();
 	var cards = decklist.split('\n');
 	if(cards.length == 1) {
 		doingDeckList = false;
