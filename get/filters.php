@@ -60,7 +60,7 @@
 		asort($set);
 
 		echo("<div class='filter-container'><div class='filter-container-header'>$header</div>");
-		foreach($sorted_set as $key => $value)
+		foreach($set as $key => $value)
 			echo("<div class='filter-line'><input type='checkbox' class='$class' data-filter-key='$key' $checked /> <div class='filter-name'>$value</div></div>");
 		echo('</div>');
 	}
