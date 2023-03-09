@@ -39,7 +39,7 @@
 		'ampersand' => 'D&D Ampersand',
 		'fnm' => 'FNM',
 		'gameday' => 'Game Day'
-	));
+	);
 
 	$NEGATIVE_FILTERS = array(
 		'secret-lair' => 'Hide Secret Lair Cards',
