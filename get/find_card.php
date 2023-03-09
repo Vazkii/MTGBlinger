@@ -182,11 +182,8 @@
 		if($set === 'brr' && $cn > 63)
 			array_push($tags, 'sketch-artifact');
 
-		if($lang !== 'en') {
-			array_push($tags, 'not-english');
-			if($lang === 'ph')
-				array_push($tags, 'phyrexian');
-		}
+		if($lang === 'ph')
+			array_push($tags, 'phyrexian');
 
 		if((property_exists($card, 'security_stamp') && $card->security_stamp === 'triangle'))
 			array_push($tags, 'universes-beyond');
@@ -208,12 +205,6 @@
 		if($set === '10e' && in_array('foil', $card->finishes))
 			array_push($tags, 'no-reminder');
 
-		$has_nonfoil = in_array('nonfoil', $card->finishes);
-		if(!$has_nonfoil)
-			array_push($tags, 'only-foil');
-		else if(sizeof($card->finishes) == 1)
-			array_push($tags, 'only-nonfoil');
-
 		if($card->frame === '1997' && in_array('foil', $card->finishes))
 			array_push($tags, 'retro-foil');
 
@@ -222,9 +213,6 @@
 
 		if($card->textless)
 			array_push($tags, 'textless');
-
-		if(in_array($card->artist, $CONTROVERSIAL_ARTISTS))
-			array_push($tags, 'controversial-artist');
 
 		if(property_exists($card, 'promo_types')) {
 			$types = $card->promo_types;
@@ -242,6 +230,18 @@
 			if($found_acceptable && !sizeof($tags))
 				array_push($tags, "misc-promo");
 		}
+
+		if($lang !== 'en')
+			array_push($tags, 'not-english');
+
+		$has_nonfoil = in_array('nonfoil', $card->finishes);
+		if(!$has_nonfoil)
+			array_push($tags, 'only-foil');
+		else if(sizeof($card->finishes) == 1)
+			array_push($tags, 'only-nonfoil');
+
+		if(in_array($card->artist, $CONTROVERSIAL_ARTISTS))
+			array_push($tags, 'controversial-artist');
 
 		$has_strong_tag = false;
 		foreach ($tags as $i => $tag)
