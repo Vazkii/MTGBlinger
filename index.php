@@ -26,7 +26,7 @@
 				<div id='filters-header'>
 					Show Filters
 				</div>
-				<div id='filters-contents'>
+				<div id='filters-contents' class='filters-hidden'>
 					<?php 
 						include 'get/filters.php'; 
 						render_filters();

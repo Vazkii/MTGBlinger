@@ -14,6 +14,7 @@
 		'etched-foil' => 'Etched Foil',
 		'retro-foil' => '7th Edition Foil',
 		'borderless' => 'Borderless',
+		'jpwalker' => 'WAR Japanese Planeswalkers',
 		'misc-promo' => 'Misc. Promos'
 	));
 
@@ -23,22 +24,21 @@
 		'pro-tour' => 'Pro Tour',
 		'30a-play' => '30th Anniversary Play Promos',
 		'champs-and-states' => 'Champs and States',
-		'bundle' => 'WIP',
-		'buyabox' => 'WIP',
-		'convention' => 'WIP',
-		'instore' => 'WIP',
-		'jpwalker' => 'WIP',
-		'judgegift' => 'WIP',
-		'mediainsert' => 'WIP',
-		'prerelease' => 'WIP',
-		'promopack' => 'WIP',
-		'release' => 'WIP',
-		'setpromo' => 'WIP',
-		'textless' => 'WIP',
-		'wizardsplaynetwork' => 'WIP',
-		'ampersand' => 'WIP',
-		'fnm' => 'WIP',
-		'gameday' => 'WIP'
+		'bundle' => 'Bundle',
+		'buyabox' => 'Buy a Box',
+		'convention' => 'Convention',
+		'instore' => 'In-Store Play',
+		'judgegift' => 'Judge Gift',
+		'mediainsert' => 'Media Insert',
+		'prerelease' => 'Prerelease',
+		'promopack' => 'Promo Pack',
+		'release' => 'Release',
+		'setpromo' => 'Set Promo',
+		'textless' => 'Textless',
+		'wizardsplaynetwork' => 'WPN',
+		'ampersand' => 'D&D Ampersand',
+		'fnm' => 'FNM',
+		'gameday' => 'Game Day'
 	));
 
 	define('NEGATIVE_FILTERS', array(
@@ -57,11 +57,12 @@
 		$class = $negative ? 'filter filter-negative' : 'filer';
 		$checked = $negative ? '' : 'checked';
 
-		echo("<div class='filter-container'><div class='filter-container-header'>$header</div>");
-		foreach($set as $key => $value) {
+		$sorted_set = $set;
+		asort($sorted_set);
 
-			echo("<input type='checkbox' class='$class' data-filter-key='$key' $checked /> $value<br>");
-		}
+		echo("<div class='filter-container'><div class='filter-container-header'>$header</div>");
+		foreach($sorted_set as $key => $value)
+			echo("<div class='filter-line'><input type='checkbox' class='$class' data-filter-key='$key' $checked /> <div class='filter-name'>$value</div></div>");
 		echo('</div>');
 	}
 ?>

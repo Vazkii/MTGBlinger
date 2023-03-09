@@ -84,6 +84,19 @@ $('#clear-btn').click(function() {
 	$('#results').html('');
 })
 
+$('#filters-header').click(function() {
+	var contents = $('#filters-contents');
+	var visible = contents.hasClass('filters-hidden');
+
+	if(visible) {
+		contents.removeClass('filters-hidden');
+		$(this).text('Hide Filters');
+	} else {
+		contents.addClass('filters-hidden');
+		$(this).text('Show Filters');
+	}
+});
+
 function updateResults() {
 	loadTemplate('cards', lastResults, function(data) {
 		lastContainer.html(data);
@@ -119,7 +132,7 @@ function materialIcon() {
 
 function ifWPNStar() {
 	return function(text, render) {
-		if(this.tags.includes('retro-foil'))
+		if(this.tags.length == 1 && this.tags.includes('retro-foil'))
 			return text; 
 		return '';
 	};
