@@ -44,6 +44,7 @@ function findDecklist() {
 
 	var cardName = currentDecklist.pop();
 	cardName = sanitize(cardName, /^(?:\d+ )(.+)/i);
+	cardName = sanitize(cardName, /(.+) \#.+/i);
 	cardName = sanitize(cardName, /(.+) \*[FE]\*/i);
 	cardName = sanitize(cardName, /(.+) \([a-zA-Z0-9]{3,5}\) [0-9sp]{1,4}/i);
 
