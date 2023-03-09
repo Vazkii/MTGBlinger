@@ -1,5 +1,5 @@
 <?php	
-	$QUERY_FLAGS = 'game:paper unique:prints -t:basic -is:funny -is:token sort:usd_foil';
+	$QUERY_FLAGS = 'game:paper unique:prints -t:basic -is:funny -is:token';
 	$TAGGED_SETS = array(
 		'mps' => 'inventions',
 		'mp2' => 'invocations',
@@ -73,6 +73,8 @@
 
 				$skip_nonfoil = sizeof($tags) == 1 && $tags[0] === 'retro-foil';
 
+				$effective_price = 0;
+
 				$finishes_obj = array();
 				foreach ($obj->finishes as $key => $finish) {
 					if($skip_nonfoil && $finish !== 'foil')
@@ -82,22 +84,38 @@
 					$finish_obj['type'] = $finish;
 					$finish_obj['buy'] = array();
 
-					parse_price($obj, 'usd', 'tcgplayer', $finish, $finish_obj);
+					$usd = parse_price($obj, 'usd', 'tcgplayer', $finish, $finish_obj);
 					parse_price($obj, 'eur', 'cardmarket', $finish, $finish_obj);
 					array_push($finishes_obj, $finish_obj);
+
+					if($usd != 0 && ($effective_price == 0 || $usd < $effective_price))
+						$effective_price = $usd;
 				}
 
 				$filtered_obj = array(
 					'url' => $obj->scryfall_uri,
 					'image' => $image_uris->normal,
 					'versions' => $finishes_obj,
-					'tags' => $tags
+					'tags' => $tags,
+					'effective_price' => $effective_price
 				);
 				array_push($query_return, $filtered_obj);
 			}
 		}
 
+		usort($query_return, 'compare_prices');
 		return array('cards' => $query_return);
+	}
+
+	function compare_prices($card1, $card2) {
+		$price1 = $card1['effective_price'] * 100;
+		$price2 = $card2['effective_price'] * 100;
+
+		$price_diff = $price2 - $price1;
+		if($price_diff != 0)
+			return $price_diff;
+
+		return strcmp($card1['url'], $card2['url']);
 	}
 
 	function get_image_uris($card) {
@@ -112,6 +130,7 @@
 		$prices = $obj->prices;
 		$key = ($finish === 'nonfoil' ? '' : "_$finish");
 
+		$price_val = 0;
 		$listing = array(
 			'currency' => $curr,
 			'store' => $store,
@@ -120,10 +139,14 @@
 		);
 
 		$search_key = "$curr$key";
-		if(property_exists($prices, $search_key) && $prices->{$search_key})
-			$listing['price'] = $prices->{$search_key};
+		if(property_exists($prices, $search_key) && $prices->{$search_key}) {
+			$price_str = $prices->{$search_key};
+			$price_val = floatval($price_str);
+			$listing['price'] = $price_str;
+		}
 
 		array_push($out['buy'], $listing);
+		return $price_val;
 	}
 
 	function get_card_tags($card) {

@@ -57,8 +57,7 @@
 		$class = $negative ? 'filter filter-negative' : 'filer';
 		$checked = $negative ? '' : 'checked';
 
-		$sorted_set = $set;
-		asort($sorted_set);
+		asort($set);
 
 		echo("<div class='filter-container'><div class='filter-container-header'>$header</div>");
 		foreach($sorted_set as $key => $value)

@@ -3,7 +3,7 @@
 </div>
 <div class='card-row'>
 {{#cards}}
-	<div class='{{#versions}}finish-{{type}} {{/versions}}{{#tags}}tag-{{.}} {{/tags}}card'>
+	<div class='{{#versions}}finish-{{type}} {{/versions}}{{#tags}}tag-{{.}} {{/tags}}card' data-price='{{effective_price}}'>
 		<div class='card-art'>
 			<img src='{{image}}'></img>
 			{{#if_wpn_star}}
@@ -38,7 +38,7 @@
 			{{/versions}}
 
 			{{#if_wpn_star}}
-				<i>simulated wotc star foil effect</i>
+				<i>simulated 7th ed. foil effect</i>
 			{{/if_wpn_star}}
 		</div>
 	</div>
