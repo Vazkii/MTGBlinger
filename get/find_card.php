@@ -210,6 +210,9 @@
 		if($card->border_color === 'borderless')
 			array_push($tags, 'borderless');
 
+		if($card->textless)
+			array_push($tags, 'textless');
+
 		if(in_array($card->artist, $CONTROVERSIAL_ARTISTS))
 			array_push($tags, 'controversial-artist');
 

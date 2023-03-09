@@ -18,6 +18,13 @@
 			return;
 		}
 
+		$allow_empty = array_key_exists('allow_empty', $_GET) && $_GET['allow_empty'] === 'true';
+
+		if(!$allow_empty && preg_match("/plains|island|swamp|mountain|forest|wastes/i", $card)) {
+			error(406, "Due to the massive amount of printings, Basic Land search is currently not supported.");
+			return;
+		}
+
 		try {
 			$result = cache_or_request(strtolower($card));	
 		} catch(Exception $e) {
@@ -30,7 +37,6 @@
 			return;
 		}
 
-		$allow_empty = array_key_exists('allow_empty', $_GET) && $_GET['allow_empty'] === 'true';
 		if(!$allow_empty && !sizeof(json_decode($result)->cards)) {
 			error(406, "$card exists on Scryfall, but no versions count as bling");
 			return;
