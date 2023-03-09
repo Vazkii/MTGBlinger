@@ -90,6 +90,19 @@ button {
 	border-radius: 18px;
 }
 
+.wpn-star {
+	position: absolute;
+	z-index: 0;
+	margin-top: -175px;
+	margin-left: -100px;
+	scale: 0.3;
+	
+}
+
+.wpn-star img {
+   filter: opacity(0.6) brightness(0) invert(1);
+}
+
 .card-overlay {
 	display: inline-block;
 	opacity: 0;

@@ -6,6 +6,11 @@
 	<div class='{{#versions}}finish-{{type}} {{/versions}}{{#tags}}tag-{{.}} {{/tags}}card'>
 		<div class='card-art'>
 			<img src='{{image}}'></img>
+			{{#if_wpn_star}}
+			<div class='wpn-star'>
+				<img src='img/wpnstar.png'></img>
+			</div>
+			{{/if_wpn_star}}
 		</div>
 		<div class='card-overlay'>
 			<div class='overlay-card-version'>

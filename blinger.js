@@ -65,8 +65,10 @@ function findNext(cardName) {
 
 	$.get(url, function(data) {
 		lastResults = JSON.parse(data);
+
 		lastResults['card_name'] = cardName.trim().toLowerCase();
 		lastResults['material_icon'] = materialIcon;
+		lastResults['if_wpn_star'] = ifWPNStar;
 
 		errored = false;
 
@@ -111,6 +113,14 @@ function materialIcon() {
 			case 'nonfoil': return 'circle';
 			case 'foil': return 'stars';
 			case 'etched': return 'offline_bolt';
-		}	
-	}
+		}
+	};
+}
+
+function ifWPNStar() {
+	return function(text, render) {
+		if(this.tags.includes('retro-foil'))
+			return text; 
+		return '';
+	};
 }

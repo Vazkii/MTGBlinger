@@ -1,5 +1,5 @@
 <?php	
-	$QUERY_FLAGS = 'game:paper unique:prints -t:basic -is:funny -is:token sort:usd';
+	$QUERY_FLAGS = 'game:paper unique:prints -t:basic -is:funny -is:token sort:usd_foil';
 	$TAGGED_SETS = array(
 		'mps' => 'inventions',
 		'mp2' => 'invocations',
@@ -11,6 +11,7 @@
 		'plg21' => 'love-your-lgs',
 		'plg22' => 'love-your-lgs',
 		'plg23' => 'love-your-lgs',
+		'sch' => 'store-championships',
 		'ppro' => 'pro-tour',
 		'p30a' => '30a-play',
 		'pcmp' => 'champs-and-states',
@@ -70,8 +71,13 @@
 				$small_img = $image_uris->small;
 				debug("<img src='$small_img'></img><b>Tags: </b>$tags_str<br>");
 
+				$skip_nonfoil = sizeof($tags) == 1 && $tags[0] === 'retro-foil';
+
 				$finishes_obj = array();
 				foreach ($obj->finishes as $key => $finish) {
+					if($skip_nonfoil && $finish !== 'foil')
+						continue;
+
 					$finish_obj = array();
 					$finish_obj['type'] = $finish;
 					$finish_obj['buy'] = array();
@@ -153,6 +159,9 @@
 
 		if(in_array('etched', $card->finishes))
 			array_push($tags, 'etched-foil');
+
+		if($card->frame === '1997' && in_array('foil', $card->finishes))
+			array_push($tags, 'retro-foil');
 
 		if($card->border_color === 'borderless')
 			array_push($tags, 'borderless');
