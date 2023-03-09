@@ -173,9 +173,9 @@ button {
 .wpn-star img {
    width: 500px;
    height: 236px;
-   scale: 0.4;
+   scale: 0.3;
    margin-top: -170px;
-   margin-left: -100px;
+   margin-left: -130px;
    filter: opacity(0.6) brightness(0) invert(1);
 }
 
