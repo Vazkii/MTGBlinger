@@ -10,7 +10,7 @@ var errored = false;
 
 $(function() {
 	$('.filter').each(function() {
-		updateCheckbox($(this));
+		updateCheckbox($(this), false);
 	});
 });
 
@@ -100,17 +100,27 @@ $('#filters-header').click(function() {
 });
 
 $('.filter').click(function() {
-	if(updateCheckbox($(this)))
+	if(updateCheckbox($(this), true))
 		updateFiltersOnCards($(document));
 });
 
-function updateCheckbox(obj) {
+function updateCheckbox(obj, updateCookie) {
 	var checked = obj.is(':checked');
 	var key = obj.attr('data-filter-key');
 	var negate = obj.hasClass('filter-negative');
 
-	var list = negate ? negativeFilters : positiveFilters;
+	var cookie = `check-${key}`;
+	if(updateCookie)
+		$.cookie(cookie, checked);
+	else {
+		var shouldCheck = $.cookie(cookie);
+		if(shouldCheck != undefined) {
+			checked = (shouldCheck == 'true');
+			obj.prop('checked', checked);
+		}
+	}
 
+	var list = negate ? negativeFilters : positiveFilters;
 	var contained = list.includes(key);
 	if(checked && !contained) {
 		list.push(key);
