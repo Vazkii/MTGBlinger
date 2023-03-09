@@ -29,6 +29,15 @@
 	$IGNORED_PROMO_TYPES = array(
 		'brawldeck'
 	);
+	$WEAK_TAGS = array(
+		'not-english', 'controversial-artist', 'only-foil', 'only-nonfoil'
+	);
+	$CONTROVERSIAL_ARTISTS = array(
+		'Harold McNeill', 
+		'Terese Nielsen', 
+		'Noah Bradley', 
+		'Seb McKinnon'
+	);
 
 	function debug($str) {
 		global $testing;
@@ -150,7 +159,7 @@
 	}
 
 	function get_card_tags($card) {
-		global $TAGGED_SETS, $TRACKED_PROMO_TYPES, $IGNORED_PROMO_TYPES;
+		global $TAGGED_SETS, $TRACKED_PROMO_TYPES, $IGNORED_PROMO_TYPES, $WEAK_TAGS, $CONTROVERSIAL_ARTISTS;
 		$tags = array();
 
 		$set = $card->set;
@@ -169,8 +178,11 @@
 				array_push($tags, 'phyrexian');
 		}
 
-		if((property_exists($card, 'security_stamp') && $card->security_stamp === 'triangle') || property_exists($card, 'flavor_name'))
+		if((property_exists($card, 'security_stamp') && $card->security_stamp === 'triangle'))
 			array_push($tags, 'universes-beyond');
+
+		if(property_exists($card, 'flavor_name'))
+			array_push($tags, 'has-flavor-name');
 
 		if(property_exists($card, 'frame_effects')) {
 			if(in_array('extendedart', $card->frame_effects))
@@ -183,11 +195,20 @@
 		if(in_array('etched', $card->finishes))
 			array_push($tags, 'etched-foil');
 
+		$has_nonfoil = in_array('nonfoil', $card->finishes);
+		if(!$has_nonfoil)
+			array_push($tags, 'only-foil');
+		else if(sizeof($card->finishes) == 1)
+			array_push($tags, 'only-nonfoil');
+
 		if($card->frame === '1997' && in_array('foil', $card->finishes))
 			array_push($tags, 'retro-foil');
 
 		if($card->border_color === 'borderless')
 			array_push($tags, 'borderless');
+
+		if(in_array($card->artist, $CONTROVERSIAL_ARTISTS))
+			array_push($tags, 'controversial-artist');
 
 		if(property_exists($card, 'promo_types')) {
 			$types = $card->promo_types;
@@ -206,8 +227,15 @@
 				array_push($tags, "misc-promo");
 		}
 
-		if(sizeof($tags) == 1 && $tags[0] === 'not-english')
-			array_pop($tags);
+		$has_strong_tag = false;
+		foreach ($tags as $i => $tag)
+			if(!in_array($tag, $WEAK_TAGS)) {
+				$has_strong_tag = true;
+				break;
+			}
+		
+		if(!$has_strong_tag)
+			return array();
 
 		return $tags;
 	}

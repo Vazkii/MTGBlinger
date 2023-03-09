@@ -42,9 +42,13 @@
 	));
 
 	define('NEGATIVE_FILTERS', array(
-		'secret-lair' => 'Hide Secret Lair',
+		'secret-lair' => 'Hide Secret Lair Cards',
 		'universes-beyond' => 'Hide Universes Beyond',
-		'not-english' => 'Hide Non-English Cards'
+		'has-flavor-name' => 'Hide Cards with Flavor Name',
+		'not-english' => 'Hide Non-English Cards',
+		'controversial-artist' => 'Hide Controversial Artists',
+		'only-foil' => 'Hide Foil-Only Cards',
+		'only-nonfoil' => 'Hide Nonfoil-Only Cards'
 	));
 
 	function render_filters() {
