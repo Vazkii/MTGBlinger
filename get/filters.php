@@ -16,7 +16,11 @@
 		'no-reminder' => '10th Edition Foil',
 		'borderless' => 'Borderless',
 		'jpwalker' => 'WAR Japanese Planeswalkers',
-		'misc-promo' => 'Misc. Promos'
+		'misc-promo' => 'Misc. Promos',
+		'from-the-vault' => 'From The Vault',
+		'spellbook' => 'Signature Spellbook',
+		'commander-collection' => 'Commander Collection',
+		'premium_deck' => 'Premium Deck Series'
 	);
 
 	$PROMO_FILTERS = array(

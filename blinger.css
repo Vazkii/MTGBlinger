@@ -111,7 +111,7 @@ button {
 }
 
 #filters-contents {
-	height: 928px;
+	height: 965px;
 	overflow: hidden;
 	transition: 0.5s height;
 }
@@ -324,7 +324,7 @@ button {
 	}
 	
 	#filters-contents {
-		height: 2100px;	
+		height: 2300px;	
 	}
 
 	.card-name {

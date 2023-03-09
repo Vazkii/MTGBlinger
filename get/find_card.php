@@ -20,6 +20,12 @@
 		'slp' => 'secret-lair',
 		'slu' => 'secret-lair'
 	);
+	$TAGGED_SET_TYPES = array(
+		'from_the_vault' => 'from-the-vault',
+		'spellbook' => 'spellbook',
+		'arsenal' => 'commander-collection',
+		'premium_deck' => 'premium_deck'
+	);
 	$TRACKED_PROMO_TYPES = array(
 		'bundle', 'buyabox', 'convention', 'instore', 'jpwalker', 
 		'judgegift', 'mediainsert', 'prerelease', 'promopack', 'release', 
@@ -159,15 +165,19 @@
 	}
 
 	function get_card_tags($card) {
-		global $TAGGED_SETS, $TRACKED_PROMO_TYPES, $IGNORED_PROMO_TYPES, $WEAK_TAGS, $CONTROVERSIAL_ARTISTS;
+		global $TAGGED_SETS, $TAGGED_SET_TYPES, $TRACKED_PROMO_TYPES, $IGNORED_PROMO_TYPES, $WEAK_TAGS, $CONTROVERSIAL_ARTISTS;
 		$tags = array();
 
 		$set = $card->set;
+		$set_type = $card->set_type;
 		$lang = $card->lang;
 		$cn = $card->collector_number;
 
 		if(array_key_exists($set, $TAGGED_SETS))
 			array_push($tags, $TAGGED_SETS[$set]);
+
+		if(array_key_exists($set_type, $TAGGED_SET_TYPES))
+			array_push($tags, $TAGGED_SET_TYPES[$set_type]);
 
 		if($set === 'brr' && $cn > 63)
 			array_push($tags, 'sketch-artifact');
