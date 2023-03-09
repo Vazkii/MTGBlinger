@@ -55,7 +55,7 @@
 	}
 
 	function render_filter_set($header, $set, $negative=false, $additional='') {
-		$class = $negative ? 'filter filter-negative' : 'filer';
+		$class = $negative ? 'filter filter-negative' : 'filter';
 		$checked = $negative ? '' : 'checked';
 
 		asort($set);

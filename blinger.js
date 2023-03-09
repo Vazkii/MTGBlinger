@@ -2,15 +2,17 @@ var lastResults = '';
 var lastContainer = undefined;
 var currentDecklist = [];
 
+var positiveFilters = [];
+var negativeFilters = [];
+
 var doingDeckList = false;
 var errored = false;
 
-/**
-$(document).keyup(function(event) {
-	if(event.which == 13 && $('#card-name').is(":focus")) // enter
-		$('#send-btn').click();
+$(function() {
+	$('.filter').each(function() {
+		updateCheckbox($(this));
+	});
 });
-*/
 
 $('#send-btn').click(function() {
 	if(errored)
@@ -97,9 +99,68 @@ $('#filters-header').click(function() {
 	}
 });
 
+$('.filter').click(function() {
+	if(updateCheckbox($(this)))
+		updateFiltersOnCards($(document));
+});
+
+function updateCheckbox(obj) {
+	var checked = obj.is(':checked');
+	var key = obj.attr('data-filter-key');
+	var negate = obj.hasClass('filter-negative');
+
+	var list = negate ? negativeFilters : positiveFilters;
+
+	var contained = list.includes(key);
+	if(checked && !contained) {
+		list.push(key);
+		return true;
+	}
+
+	if(contained) {
+		list.splice(list.indexOf(key), 1);
+		return true;
+	}
+
+	return false;
+}
+
+function updateFiltersOnCards(container) {
+	container.find('.card').each(function() {
+		var card = $(this);
+
+		var matchedPositive = false;
+		var matchedNegative = false;
+
+		for(k in negativeFilters) {
+			var neg = negativeFilters[k];
+			var test = `tag-${neg}`;
+			if(card.hasClass(test)) {
+				matchedNegative = true;
+				break;
+			}
+		}
+
+		if(!matchedNegative)
+			for(k in positiveFilters) {
+				var pos = positiveFilters[k];
+				var test = `tag-${pos}`;
+				if(card.hasClass(test)) {
+					matchedPositive = true;
+					break;
+				}
+			}
+
+		if(matchedPositive)
+			card.show();
+		else card.hide();
+	});
+}
+
 function updateResults() {
 	loadTemplate('cards', lastResults, function(data) {
 		lastContainer.html(data);
+		updateFiltersOnCards(lastContainer);
 	});
 }
 
