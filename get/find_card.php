@@ -129,7 +129,7 @@
 
 	function get_image_uris($card) {
 		$layout = $card->layout;
-		if($layout === 'transform' || $layout === 'modal_dfc' || $layout === 'meld' || $layout === 'reversible_card')
+		if($layout === 'transform' || $layout === 'modal_dfc' || $layout === 'reversible_card')
 			return $card->card_faces[0]->image_uris;
 		else 
 			return $card->image_uris;
