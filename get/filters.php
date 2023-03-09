@@ -12,7 +12,8 @@
 		'extended-art' => 'Extended Art Frame',
 		'showcase' => 'Showcase',
 		'etched-foil' => 'Etched Foil',
-		'retro-foil' => '7th Edition Foil',
+		'retro-foil' => '7th Edition Style Foil',
+		'no-reminder' => '10th Edition Foil',
 		'borderless' => 'Borderless',
 		'jpwalker' => 'WAR Japanese Planeswalkers',
 		'misc-promo' => 'Misc. Promos'

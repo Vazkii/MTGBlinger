@@ -195,6 +195,9 @@
 		if(in_array('etched', $card->finishes))
 			array_push($tags, 'etched-foil');
 
+		if($set === '10e' && in_array('foil', $card->finishes))
+			array_push($tags, 'no-reminder');
+
 		$has_nonfoil = in_array('nonfoil', $card->finishes);
 		if(!$has_nonfoil)
 			array_push($tags, 'only-foil');
