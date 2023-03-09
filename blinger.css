@@ -111,7 +111,7 @@ button {
 }
 
 #filters-contents {
-	height: 880px;
+	height: 928px;
 	overflow: hidden;
 	transition: 0.5s height;
 }
@@ -121,15 +121,20 @@ button {
 	transition: 0.5s height;
 }
 
-.filter-line input:checked {
+.filter:checked {
 	transition: 0.2s background-color;
 	background-color: green;
+}
+
+.filter-negative:checked {
+	background-color: darkred;
 }
 
 .filter-name {
 	display: inline-block;
 	vertical-align: top;
 	padding-top: 6px;
+	padding-left: 6px;
 	line-height: 25px;
 }
 

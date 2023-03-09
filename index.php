@@ -32,6 +32,9 @@
 						include 'get/filters.php'; 
 						render_filters();
 					?>
+
+					<br>
+					<i>A card is shown if it matches any enabled option. (eg. a Borderless Box Topper will show up if Borderless is disabled but Box Topper is enabled)</i>
 				</div>
 			</div>
 
