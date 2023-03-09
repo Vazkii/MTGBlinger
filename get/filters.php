@@ -1,5 +1,5 @@
 <?php
-	define('TYPE_FILTERS', array(
+	$TYPE_FILTERS = array(
 		'inventions' => 'Kaladesh Inventions',
 		'invocations' => 'Amonkhet Invocations',
 		'expeditions' => 'Zendikar Expeditions',
@@ -16,9 +16,9 @@
 		'borderless' => 'Borderless',
 		'jpwalker' => 'WAR Japanese Planeswalkers',
 		'misc-promo' => 'Misc. Promos'
-	));
+	);
 
-	define('PROMO_FILTERS', array(
+	$PROMO_FILTERS = array(
 		'love-your-lgs' => 'Love Your LGS',
 		'store-championships' => 'Store Championships',
 		'pro-tour' => 'Pro Tour',
@@ -41,7 +41,7 @@
 		'gameday' => 'Game Day'
 	));
 
-	define('NEGATIVE_FILTERS', array(
+	$NEGATIVE_FILTERS = array(
 		'secret-lair' => 'Hide Secret Lair Cards',
 		'universes-beyond' => 'Hide Universes Beyond',
 		'has-flavor-name' => 'Hide Cards with Flavor Name',
@@ -49,13 +49,15 @@
 		'controversial-artist' => 'Hide Controversial Artists',
 		'only-foil' => 'Hide Foil-Only Cards',
 		'only-nonfoil' => 'Hide Nonfoil-Only Cards'
-	));
+	);
 
 	function render_filters() {
-		render_filter_set('Bling To Show', TYPE_FILTERS);
-		render_filter_set('Promos To Show', PROMO_FILTERS);
+		global $TYPE_FILTERS, $PROMO_FILTERS, $NEGATIVE_FILTERS;
 
-		render_filter_set('Extra Options', NEGATIVE_FILTERS, true, 
+		render_filter_set('Bling To Show', $TYPE_FILTERS);
+		render_filter_set('Promos To Show', $PROMO_FILTERS);
+
+		render_filter_set('Extra Options', $NEGATIVE_FILTERS, true, 
 			'<div id="filter-line">'.
 				'<input type="checkbox" class="filter filter-negative" data-filter-key="price-filter" />'.
 				'<div class="filter-name">Hide Cards above <input type="number" id="price-filter" value="20" min="1"></input> USD</div>'.
