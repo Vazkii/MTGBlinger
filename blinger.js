@@ -165,6 +165,15 @@ function updateFiltersOnCards(container) {
 			card.show();
 		else card.hide();
 	});
+
+	container.find('.card-row').each(function() {
+		var row = $(this);
+		var visible = row.find('.card:visible').length;
+
+		if(visible > 0)
+			row.find('.filter-notice').hide();
+		else row.find('.filter-notice').show();
+	});
 }
 
 function updateResults() {

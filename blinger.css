@@ -160,6 +160,14 @@ button {
 	background: #ffffff33;
 }
 
+.filter-notice {
+	display: none;
+	padding-left: 50px;
+	padding-bottom: 20px;
+	font-size: 20px;
+	color: #c68888;
+}
+
 .card {
 	display: inline-block;
 	margin: 10px;
