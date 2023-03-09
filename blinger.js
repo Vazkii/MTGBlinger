@@ -12,6 +12,10 @@ $(function() {
 	$('.filter').each(function() {
 		updateCheckbox($(this), false);
 	});
+
+	var savedPriceFilter = $.cookie('price-filter-value');
+	if(savedPriceFilter != undefined)
+		$('#price-filter').val(savedPriceFilter);
 });
 
 $('#send-btn').click(function() {
@@ -43,15 +47,13 @@ function findDecklist() {
 	cardName = sanitize(cardName, /(.+) \*[FE]\*/i);
 	cardName = sanitize(cardName, /(.+) \([a-zA-Z0-9]{3,5}\) [0-9sp]{1,4}/i);
 
-	console.log("Sanitized cardname is " + cardName);
 	findNext(cardName);
 }
 
 function sanitize(str, pattern) {
-	if(pattern.test(str)) {
-		console.log('Matching str ' + str);
+	if(pattern.test(str))
 		return str.replace(pattern, '$1')
-	}
+	
 	return str;
 }
 
@@ -104,6 +106,12 @@ $('.filter').click(function() {
 		updateFiltersOnCards($(document));
 });
 
+$('#price-filter').change(function() {
+	var num = $(this).val();
+	$.cookie('price-filter-value', num);
+	updateFiltersOnCards($(document));
+});
+
 function updateCheckbox(obj, updateCookie) {
 	var checked = obj.is(':checked');
 	var key = obj.attr('data-filter-key');
@@ -151,16 +159,25 @@ function updateFiltersOnCards(container) {
 			}
 		}
 
-		if(!matchedNegative)
-			for(k in positiveFilters) {
-				var pos = positiveFilters[k];
-				var test = `tag-${pos}`;
-				if(card.hasClass(test)) {
-					matchedPositive = true;
-					break;
-				}
+		if(!matchedNegative) {
+			if(negativeFilters.includes('price-filter')) {
+				var max = parseInt($('#price-filter').val());
+				var price = parseInt(card.attr('data-price'));
+				if(price > max)
+					matchedNegative = true;
 			}
 
+			if(!matchedNegative)
+				for(k in positiveFilters) {
+					var pos = positiveFilters[k];
+					var test = `tag-${pos}`;
+					if(card.hasClass(test)) {
+						matchedPositive = true;
+						break;
+					}
+				}
+		}
+			
 		if(matchedPositive)
 			card.show();
 		else card.hide();

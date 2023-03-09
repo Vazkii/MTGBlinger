@@ -100,7 +100,7 @@ button {
 	margin-bottom: 15px;
 }
 
-.filter-line input {
+.filter {
 	width: 30px;
 	height: 30px;
 	cursor: pointer;
@@ -136,6 +136,21 @@ button {
 	padding-top: 6px;
 	padding-left: 6px;
 	line-height: 25px;
+}
+
+#price-filter {
+	border-radius: 20px;
+	background-color: #ffffff10;
+	color: white;
+	font-size: 16px;
+	padding: 10px;
+	width: 60px;
+	border: none;
+	text-align: center;
+}
+
+.filters-tip {
+	font-style: italic;
 }
 
 #results {
@@ -294,4 +309,34 @@ button {
 	margin-top: 20px;
 	padding: 20px;
 	border-top: 1px solid #ffffff55;
+}
+
+@media (max-width: 768px) {
+
+	#top-part textarea {
+		width: calc(100% - 100px);
+	}
+	
+	#top-part button {
+		width: calc(100% - 100px);
+		margin: 0;	
+		margin-top: 10px;
+	}
+	
+	#filters-contents {
+		height: 2100px;	
+	}
+
+	.card-name {
+		font-size: 18px;
+		max-width: calc(100vw - 100px);
+		overflow-x: scroll;
+		margin-bottom: -4px;
+	}	
+
+	.filter-notice {
+		max-width: calc(300px);
+		white-space: normal;
+	}
+
 }

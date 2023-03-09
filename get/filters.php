@@ -55,11 +55,15 @@
 		render_filter_set('Bling To Show', TYPE_FILTERS);
 		render_filter_set('Promos To Show', PROMO_FILTERS);
 
-		render_filter_set('Extra Options', NEGATIVE_FILTERS, true, "<br>(price filter coming soon)");
+		render_filter_set('Extra Options', NEGATIVE_FILTERS, true, 
+			'<div id="filter-line">'.
+				'<input type="checkbox" class="filter filter-negative" data-filter-key="price-filter" />'.
+				'<div class="filter-name">Hide Cards above <input type="number" id="price-filter" value="20" min="1"></input> USD</div>'.
+			'</div>');
 	}
 
 	function render_filter_set($header, $set, $negative=false, $additional='') {
-		$class = $negative ? 'filter filter-negative' : 'filter';
+		$class = $negative ? 'filter-negative' : '';
 		$checked = $negative ? '' : 'checked';
 
 		asort($set);
@@ -68,7 +72,7 @@
 		
 		foreach($set as $key => $value) {
 			$line = "<div class='filter-line'>".
-						"<input type='checkbox' class='$class' data-filter-key='$key' $checked />".
+						"<input type='checkbox' class='filter $class' data-filter-key='$key' $checked />".
 						"<div class='filter-name'>$value</div>".
 					"</div>";
 			echo($line);
