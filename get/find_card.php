@@ -58,15 +58,25 @@
 
 		$cardname = str_replace('\'', '', $cardname);
 		$query = "!'$cardname' " . $QUERY_FLAGS;
-		$sf_url = "https://api.scryfall.com/cards/search?q=$query&pretty=" . $testing;
+		$sf_url = "https://api.scryfall.com/cards/search?q=$query";
 
 		debug("Searching for <b>$cardname</b><br>");
 		debug("<b>$sf_url</b><br>");
 
-		$sf_contents = @file_get_contents($sf_url);
+		$context = stream_context_create(array(
+		    'http' => [
+		            "method" => "GET",
+        			"header" => "User-Agent: idk man im just like a guy\r\n" .
+        						"Referer: https://vazkii.net/webapp/blinger\r\n" .
+            					"Accept: application/json\r\n"
+        ]
+		));
+
+		$sf_contents = file_get_contents($sf_url, false, $context);
 		if(!$sf_contents)
 			return null;
 
+		debug($sf_contents);
 		$obj = json_decode($sf_contents);
 
 		$count = $obj->total_cards;
