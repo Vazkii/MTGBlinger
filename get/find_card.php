@@ -57,8 +57,8 @@
 		$query_return = array();
 
 		$cardname = str_replace('\'', '', $cardname);
-		$query = "!'$cardname' " . $QUERY_FLAGS;
-		$sf_url = "https://api.scryfall.com/cards/search?q=$query";
+		$query = "!\"$cardname\" " . $QUERY_FLAGS;
+		$sf_url = 'https://api.scryfall.com/cards/search?q=' . urlencode($query);
 
 		debug("Searching for <b>$cardname</b><br>");
 		debug("<b>$sf_url</b><br>");
@@ -66,7 +66,7 @@
 		$context = stream_context_create(array(
 		    'http' => [
 		            "method" => "GET",
-        			"header" => "User-Agent: idk man im just like a guy\r\n" .
+        			"header" => "User-Agent: MTGBlinger/1.0.2\r\n" .
         						"Referer: https://vazkii.net/webapp/blinger\r\n" .
             					"Accept: application/json\r\n"
         ]
